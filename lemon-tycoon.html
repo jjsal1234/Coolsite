@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lemonade Tycoon</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #add8e6; /* Light blue background */
+            margin: 0;
+            padding: 0;
+        }
+        #container {
+            margin: 20px;
+        }
+        #hardButton, #settingsButton, #rebirthButton, #achievementsButton {
+            background-color: #ff0000; /* Red color for these buttons */
+            color: #ffffff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        #shopButton {
+            background-color: #4CAF50; /* Green color for the Shop button */
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        #lemonadeStand {
+            display: inline-block;
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #ffffff;
+        }
+        #achievements {
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 10px;
+            display: none; /* Initially hide the achievements popup */
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            max-height: 400px; /* Set a maximum height for the popup */
+            overflow-y: auto; /* Enable vertical scrollbar if content exceeds the max height */
+            width: 300px;
+            z-index: 1;
+        }
+        #shopPopup, #settingsPopup {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            max-height: 400px; /* Set a maximum height for the popup */
+            overflow-y: auto; /* Enable vertical scrollbar if content exceeds the max height */
+            width: 300px;
+            padding: 10px;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            z-index: 1;
+        }
+        #versionText {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            color: #000000;
+        }
+        #makeLemonadeButton {
+            background-color: #ffd700; /* Yellow color for the "Make Lemonade" button */
+            color: #ffffff;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        #makeLemonadeButton:hover {
+            background-color: #ffcc00; /* Darker yellow on hover */
+        }
+        .upgradeButton {
+            background-color: #4CAF50; /* Green background color for upgrade buttons */
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div id="container">
+    <button id="hardButton" onclick="toggleHardDifficulty()">Toggle Hard Difficulty</button>
+    <button id="settingsButton" onclick="toggleSettingsPopup()">Settings</button>
+    <button id="rebirthButton" onclick="rebirth()">Rebirth ($100,000)</button>
+    <button id="achievementsButton" onclick="toggleAchievementsPopup()">Achievements</button>
+    <h1>Lemonade Tycoon</h1>
+    
+    <div id="lemonadeStand">
+        <h2>Lemonade Stand</h2>
+        <p>Money: $<span id="money">0</span></p>
+        <p>Lemonade Price: $<span id="lemonadePrice">1</span></p>
+        <button id="makeLemonadeButton" onclick="sellLemonade()">Make Lemonade</button>
+        <p id="robberyMessage"></p>
+    </div>
+
+    <button id="shopButton" onclick="toggleShopPopup()">Shop</button>
+
+    <div id="achievements">
+        <h2>Achievements</h2>
+        <p id="achievement1">Achievement 1: Start selling lemonade!</p>
+        <p id="achievement2">Achievement 2: Earn $100</p>
+        <p id="achievement3" class="unlocked">Achievement 3: Earn $500</p>
+        <p id="achievement4" class="unlocked">Achievement 4: Achieve 3 Rebirths</p>
+        <!-- Add more achievements as needed -->
+    </div>
+
+    <div id="shopPopup">
+        <h2>Upgrade Shop</h2>
+        <button class="upgradeButton" onclick="buyUpgrade(1)">Upgrade 1 - Marketing ($50)</button>
+        <button class="upgradeButton" onclick="buyUpgrade(2)">Upgrade 2 - Quality Ingredients ($100)</button>
+        <button class="upgradeButton" onclick="buyUpgrade(3)">Upgrade 3 - Larger Pitcher ($150)</button>
+        <button class="upgradeButton" onclick="buyUpgrade(4)">Upgrade 4 - Ice Cubes ($200)</button>
+        <button class="upgradeButton" onclick="buyUpgrade(5)">Upgrade 5 - Popular Location ($250)</button>
+        <button class="upgradeButton" onclick="buyUpgrade(6)">Upgrade 6 - Lemonade Stand Assistant ($300)</button>
+        <button class="upgradeButton" onclick="buyUpgrade(7)">Upgrade 7 - Advanced Recipe ($350)</button>
+        <button class="upgradeButton" onclick="buyUpgrade(8)">Upgrade 8 - Happy Hour ($400)</button>
+        <button class="upgradeButton" onclick="buyUpgrade(9)">Upgrade 9 - VIP Customers ($5000)</button>
+        <button class="upgradeButton" onclick="buyUpgrade(10)">Upgrade 10 - Organic Ingredients ($6000)</button>
+        <button class="upgradeButton" onclick="buyUpgrade(11)">Upgrade 11 - Mega Pitcher ($7500)</button>
+        <button class="upgradeButton" onclick="buyUpgrade(12)">Upgrade 12 - Polar Ice Cubes ($10000)</button>
+        <button class="upgradeButton" onclick="buyUpgrade(13)">Upgrade 13 - Exclusive Location ($12500)</button>
+        <button class="upgradeButton" onclick="buyUpgrade(14)">Upgrade 14 - Luxury Stand ($100000)</button>
+        <button class="upgradeButton" onclick="buyUpgrade(15)">Upgrade 15 - Galactic Lemonade ($500000)</button>
+        <!-- Add more upgrade buttons as needed -->
+    </div>
+
+    <div id="settingsPopup">
+        <h2>Settings</h2>
+        <button onclick="resetData()">Reset Data</button>
+    </div>
+</div>
+
+<div id="versionText">v1.2</div>
+
+<script>
+    let money = 0;
+    let lemonadePrice = 1;
+    let difficultyMultiplier = 1; // Default multiplier
+    let hardDifficultyClicked = false;
+    let rebirths = 0;
+    let rebirthCost = 100000;
+
+    // Load saved data from local storage
+    const savedData = JSON.parse(localStorage.getItem('lemonadeTycoonSave'));
+    if (savedData) {
+        money = savedData.money;
+        lemonadePrice = savedData.lemonadePrice;
+        difficultyMultiplier = savedData.difficultyMultiplier;
+        hardDifficultyClicked = savedData.hardDifficultyClicked;
+        rebirths = savedData.rebirths;
+        rebirthCost = savedData.rebirthCost;
+        updateDisplay();
+    }
+
+    function sellLemonade() {
+        // Random chance of getting robbed (20% chance in hard mode, 2% in normal mode)
+        if (Math.random() < (difficultyMultiplier === 5 ? 0.2 : 0.02)) {
+            let robberyLoss = Math.floor(money * 0.3);
+            money -= robberyLoss;
+            document.getElementById('robberyMessage').innerText = `Oh no! You got robbed and lost $${robberyLoss}!`;
+        } else {
+            document.getElementById('robberyMessage').innerText = '';
+            money += lemonadePrice;
+
+            // Check for achievements
+            checkAchievements();
+        }
+
+        updateDisplay();
+    }
+
+    function buyUpgrade(upgradeNumber) {
+        let upgradeCost = calculateUpgradeCost(upgradeNumber);
+
+        if (money >= upgradeCost) {
+            money -= upgradeCost;
+            lemonadePrice += upgradeNumber;
+        } else {
+            alert('Not enough money to buy this upgrade.');
+        }
+
+        updateDisplay();
+    }
+
+    function calculateUpgradeCost(upgradeNumber) {
+        // Custom logic to calculate upgrade cost based on upgrade number
+        // Add more logic as needed
+        switch (upgradeNumber) {
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+                return upgradeNumber * 50 * difficultyMultiplier;
+            case 6:
+            case 7:
+            case 8:
+                return upgradeNumber * 50 * difficultyMultiplier;
+            case 9:
+                return 5000 * difficultyMultiplier;
+            case 10:
+                return 6000 * difficultyMultiplier;
+            case 11:
+                return 7500 * difficultyMultiplier;
+            case 12:
+                return 10000 * difficultyMultiplier;
+            case 13:
+                return 12500 * difficultyMultiplier;
+            case 14:
+                return 100000 * difficultyMultiplier;
+            case 15:
+                return 500000 * difficultyMultiplier; // Cost of the new upgrade
+            default:
+                return 0;
+        }
+    }
+
+    function toggleHardDifficulty() {
+        if (!hardDifficultyClicked) {
+            difficultyMultiplier = difficultyMultiplier === 1 ? 5 : 1;
+            hardDifficultyClicked = true;
+            document.getElementById('hardButton').disabled = true;
+            alert(`Hard Difficulty ${difficultyMultiplier === 1 ? 'Off' : 'On'}`);
+            updateDisplay();
+        }
+    }
+
+    function toggleShopPopup() {
+        const shopPopup = document.getElementById('shopPopup');
+        shopPopup.style.display = shopPopup.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function toggleAchievementsPopup() {
+        const achievementsPopup = document.getElementById('achievements');
+        achievementsPopup.style.display = achievementsPopup.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function toggleSettingsPopup() {
+        const settingsPopup = document.getElementById('settingsPopup');
+        settingsPopup.style.display = settingsPopup.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function rebirth() {
+        if (money >= rebirthCost) {
+            money = 0;
+            rebirths++;
+            rebirthCost *= 2; // Multiply the rebirth cost by 2 for the next rebirth
+            alert(`Congratulations! You gained a rebirth. Total Rebirths: ${rebirths}`);
+            updateDisplay();
+        } else {
+            alert('Not enough money to rebirth.');
+        }
+    }
+
+    function checkAchievements() {
+        if (money >= 100 && !document.getElementById('achievement2').classList.contains('unlocked')) {
+            document.getElementById('achievement2').classList.add('unlocked');
+            alert('Achievement Unlocked: Earn $100!');
+        }
+        if (money >= 500 && !document.getElementById('achievement3').classList.contains('unlocked')) {
+            document.getElementById('achievement3').classList.add('unlocked');
+            alert('Achievement Unlocked: Earn $500!');
+        }
+        if (rebirths >= 3 && !document.getElementById('achievement4').classList.contains('unlocked')) {
+            document.getElementById('achievement4').classList.add('unlocked');
+            alert('Achievement Unlocked: Achieve 3 Rebirths!');
+        }
+        // Add more achievement checks as needed
+    }
+
+    function resetData() {
+        const confirmReset = confirm("Are you sure you want to reset all progress? This action cannot be undone.");
+        if (confirmReset) {
+            localStorage.removeItem('lemonadeTycoonSave');
+            location.reload(); // Reload the page to reset everything
+        }
+    }
+
+    function updateDisplay() {
+        document.getElementById('money').innerText = money;
+        document.getElementById('lemonadePrice').innerText = lemonadePrice;
+
+        // Save data to local storage
+        const saveData = {
+            money: money,
+            lemonadePrice: lemonadePrice,
+            difficultyMultiplier: difficultyMultiplier,
+            hardDifficultyClicked: hardDifficultyClicked,
+            rebirths: rebirths,
+            rebirthCost: rebirthCost,
+        };
+        localStorage.setItem('lemonadeTycoonSave', JSON.stringify(saveData));
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bug Report Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            height: 100px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #submission-message {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #4CAF50;
+            background-color: #e7f3e7;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <form id="bugReportForm">
+        <h2>Bug Report Form</h2>
+        <label for="bugTitle">Bug Title:</label>
+        <input type="text" id="bugTitle" name="bugTitle" required>
+
+        <label for="bugDescription">Bug Description:</label>
+        <textarea id="bugDescription" name="bugDescription" required></textarea>
+
+        <label for="stepsToReproduce">Steps to Reproduce:</label>
+        <textarea id="stepsToReproduce" name="stepsToReproduce" required></textarea>
+
+        <label for="expectedResult">Expected Result:</label>
+        <textarea id="expectedResult" name="expectedResult" required></textarea>
+
+        <label for="actualResult">Actual Result:</label>
+        <textarea id="actualResult" name="actualResult" required></textarea>
+
+        <button type="button" onclick="submitForm()">Submit Bug Report</button>
+    </form>
+
+    <div id="submission-message">
+        <p>Your bug report has been submitted. Thank you!</p>
+    </div>
+
+    <script>
+        function submitForm() {
+            // Simulate form submission (you can replace this with actual AJAX call)
+            // For simplicity, I'm just showing a success message without actual submission logic.
+            document.getElementById('bugReportForm').style.display = 'none';
+            document.getElementById('submission-message').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>

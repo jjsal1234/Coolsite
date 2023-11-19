@@ -1,0 +1,210 @@
+    <!DOCTYPE html>
+<html>
+<head>
+<title>Red Block Game with Coins and Score</title>
+<style>
+canvas {
+  background-color: grey;
+  display: block;
+  margin: 0 auto;
+}
+</style>
+</head>
+<body>
+<canvas id="canvas" width="500" height="500"></canvas>
+
+<script>
+// Get the canvas element
+var canvas = document.getElementById("canvas");
+
+// Get the canvas context
+var ctx = canvas.getContext("2d");
+
+// Create the red block objects
+var redBlocks = [];
+for (var i = 0; i < 15; i++) {
+  redBlocks.push({
+    x: Math.random() * 400,
+    y: Math.random() * 400,
+    width: 50,
+    height: 50,
+    color: "red"
+  });
+}
+
+// Create the coin objects
+var coins = [];
+for (var i = 0; i < 10; i++) {
+  coins.push({
+    x: Math.random() * 400,
+    y: Math.random() * 400,
+    width: 10,
+    height: 10,
+    color: "gold"
+  });
+}
+
+// Create the cursor object
+var cursor = {
+  x: 0,
+  y: 0
+};
+
+// Create the score variable
+var score = 0;
+
+// Animate the red blocks
+function animate() {
+  // Clear the canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Draw the red blocks
+  for (var i = 0; i < redBlocks.length; i++) {
+    ctx.fillStyle = redBlocks[i].color;
+    ctx.fillRect(redBlocks[i].x, redBlocks[i].y, redBlocks[i].width, redBlocks[i].height);
+
+    // Move the red block
+    redBlocks[i].x += 1;
+
+    // Check if the red block is touching the cursor
+    if (redBlocks[i].x + redBlocks[i].width >= cursor.x && redBlocks[i].x <= cursor.x + 10 && redBlocks[i].y + redBlocks[i].height >= cursor.y && redBlocks[i].y <= cursor.y + 10) {
+      // Game over
+      alert("Game over!");
+    }
+
+    // Check if the red block is out of bounds
+    if (redBlocks[i].x > canvas.width || redBlocks[i].x < 0) {
+      redBlocks[i].x = Math.random() * 400;
+    }
+  }
+
+  // Draw the coins
+  for (var i = 0; i < coins.length; i++) {
+    ctx.fillStyle = coins[i].color;
+    ctx.fillRect(coins[i].x, coins[i].y, coins[i].width, coins[i].height);
+
+    // Check if the cursor is touching the coin
+    if (cursor.x >= coins[i].x && cursor.x <= coins[i].x + coins[i].width && cursor.y >= coins[i].y && cursor.y <= coins[i].y + coins[i].height) {
+      // Remove the coin
+      coins.splice(i, 1);
+
+      // Increase the score
+      score += 10;
+    }
+  }
+
+  // Draw the cursor
+  ctx.fillStyle = "black";
+  ctx.fillRect(cursor.x, cursor.y, 10, 10);
+
+  // Draw the score
+  ctx.fillStyle = "white";
+  ctx.font = "20px Arial";
+  ctx.fillText("Score: " + score, 10, 20);
+
+  // Request the next animation frame
+  requestAnimationFrame(animate);
+}
+
+// Start the animation
+animate();
+
+// Move the cursor with the mouse
+canvas.addEventListener("mousemove", function(e) {
+  cursor.x = e.clientX - canvas.offsetLeft;
+  cursor.y = e.clientY - canvas.offsetTop;
+});
+    
+// Respawn the coins
+function respawnCoins() {
+  for (var i = 0; i < 10; i++) {
+    coins.push({
+      x: Math.random() * 400,
+      y: Math.random() * 400,
+      width: 10,
+      height: 10,
+      color: "gold"
+    });
+  }
+}
+
+// Call the respawnCoins() function every 5 seconds
+setInterval(respawnCoins, 5000);
+    
+// Increase the speed of the red blocks
+function increaseRedBlockSpeed() {
+  for (var i = 0; i < redBlocks.length; i++) {
+    redBlocks[i].speed += 1;
+  }
+}
+
+// Decrease the amount of time the player has to respawn after being killed
+function decreaseRespawnTime() {
+  respawnTime -= 100;
+}
+
+// Add more red blocks to the screen
+function addMoreRedBlocks() {
+  redBlocks.push({
+    x: Math.random() * 400,
+    y: Math.random() * 400,
+    width: 50,
+    height: 50,
+    color: "red",
+    speed: 1
+  });
+}
+
+// Check if the player has a score of 300 and make the game harder if they do
+function updateDifficulty() {
+  if (score >= 1000) {
+    increaseRedBlockSpeed();
+    decreaseRespawnTime();
+    makePowerUpsRarer();
+    addMoreRedBlocks();
+  }
+}
+    
+// Make the cursor bigger when the score reaches 2000
+function makeCursorBigger() {
+  cursor.width = 40;
+  cursor.height = 40;
+}
+
+// Check the score and make the cursor bigger if necessary
+function checkScore() {
+  if (score >= 2000) {
+    makeCursorBigger();
+  }
+}
+// Check if the score has reached 10000
+function checkScoreForWin() {
+  if (score >= 10000) {
+    // Alert the player that they have won
+    alert("You won!");
+
+    // Restart the game
+    restartGame();
+  }
+}
+
+// Restart the game
+function restartGame() {
+  // Reset the score
+  score = 0;
+
+  // Reset the red block positions
+  for (var i = 0; i < redBlocks.length; i++) {
+    redBlocks[i].x = Math.random() * 400;
+    redBlocks[i].y = Math.random() * 400;
+  }
+
+  // Start the animation loop again
+  requestAnimationFrame(animate);
+}
+
+// Call the checkScoreForWin() function every frame
+requestAnimationFrame(checkScoreForWin);
+</script>
+</body>
+</html>

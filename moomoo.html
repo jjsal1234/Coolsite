@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moo Moo Madness</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: 'Arial', sans-serif;
+      background-image: url('https://cdn.discordapp.com/attachments/1158055199643029605/1173463331814785094/dot2023_1112_2024_08.png?ex=65640be4&is=655196e4&hm=cc97e643af5835776766845f4b5b8adf200cdcf0ce76a47ed82e3ae5a3b207eb');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #header {
+      color: #fff;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    #cow-container {
+      margin-bottom: 20px;
+    }
+
+    #cow {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    #actions {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 10px;
+      font-size: 1em;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #stats {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: #fff;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    #shop-button {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    #shop-button img {
+      width: 50px;
+    }
+
+    #shop-modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      z-index: 2;
+    }
+
+    #close-shop {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      font-size: 1.2em;
+    }
+
+    .shop-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="stats">
+    <h2>Stats</h2>
+    <p>Health: <span id="health">100</span></p>
+    <p>Mood: <span id="mood">100</span></p>
+    <p>Hunger: <span id="hunger">100</span></p>
+    <p>Money: $<span id="money">0</span></p>
+  </div>
+
+  <div id="header">Moo Moo Madness</div>
+
+  <div id="cow-container">
+    <img id="cow" src="https://cdn.discordapp.com/attachments/1086613124045619202/1173460967674359918/ei_1699845232158-removebg-preview.png?ex=656409b0&is=655194b0&hm=8a4ac39ad748d45f18880a5e99f83ae680a7718c40b84621c806abe5571cab14" alt="Bessie the Cow">
+  </div>
+
+  <div id="actions">
+    <button onclick="feedBessie()">Feed</button>
+    <button onclick="waterBessie()">Water</button>
+    <button onclick="playWithBessie()">Play</button>
+    <button onclick="milkBessie()">Milk</button>
+  </div>
+
+  <button id="shop-button" onclick="openShop()">
+    <img src="https://cdn.discordapp.com/attachments/1086613124045619202/1173468205247893565/dot2023_1112_2042_55.png?ex=6564106e&is=65519b6e&hm=c54b908a5bce18b655f1c92611b13b12ba8114931e69b867bf4a803673836def&" alt="Shop">
+  </button>
+
+  <div id="shop-modal">
+    <span id="close-shop" onclick="closeShop()">&times;</span>
+    <h2>Shop</h2>
+    <p>Buy items to improve Bessie's well-being!</p>
+    <div class="shop-item">
+      <span>Medicine</span>
+      <button onclick="buyMedicine()">Buy ($40)</button>
+    </div>
+  </div>
+
+  <script>
+    let bessie = {
+      health: 100,
+      mood: 100,
+      hunger: 100
+    };
+
+    let money = 0;
+
+    function updateStats() {
+      document.getElementById('health').textContent = bessie.health;
+      document.getElementById('mood').textContent = bessie.mood;
+      document.getElementById('hunger').textContent = bessie.hunger;
+      document.getElementById('money').textContent = money;
+
+      document.getElementById('cow').src = bessie.health > 50 ? 'https://cdn.discordapp.com/attachments/1086613124045619202/1173460967674359918/ei_1699845232158-removebg-preview.png?ex=656409b0&is=655194b0&hm=8a4ac39ad748d45f18880a5e99f83ae680a7718c40b84621c806abe5571cab14' : 'sad_cow.png';
+
+      // Check if the cow has run out of hunger
+      if (bessie.hunger <= 0) {
+        alert('Oh no! Bessie has run out of hunger and has "died".');
+        // Reset the game or perform other actions as needed
+        resetGame();
+      }
+    }
+
+    function feedBessie() {
+      if (money >= 10) {
+        bessie.health += 10;
+        bessie.hunger += 5;
+        money -= 10;
+        updateStats();
+      } else {
+        alert('Not enough money to buy food!');
+      }
+    }
+
+    function waterBessie() {
+      bessie.health += 5;
+      bessie.hunger += 3;
+      updateStats();
+    }
+
+    function playWithBessie() {
+      bessie.mood += 10;
+      bessie.hunger -= 5;
+      updateStats();
+    }
+
+    function milkBessie() {
+      if (bessie.health > 50 && bessie.mood > 50) {
+        let earnedMoney = Math.floor(Math.random() * (100 - 30 + 1)) + 30;
+        alert(`You collected high-quality milk and earned $${earnedMoney}!`);
+        money += earnedMoney;
+        updateStats();
+      } else {
+        alert('Bessie is not in the mood for milking...');
+      }
+
+      bessie.hunger -= 2;
+      updateStats();
+    }
+
+    function buyMedicine() {
+      if (money >= 40) {
+        bessie.health += 30;
+        money -= 40;
+        updateStats();
+      } else {
+        alert('Not enough money to buy medicine!');
+      }
+    }
+
+    function resetGame() {
+      // Reset all stats to their initial values
+      bessie = {
+        health: 100,
+        mood: 100,
+        hunger: 100
+      };
+      money = 0;
+      updateStats(); // Initial rendering
+    }
+
+    // Update stats every second
+    setInterval(function() {
+      bessie.hunger -= 1;
+      updateStats();
+    }, 1000);
+
+    function openShop() {
+      document.getElementById('shop-modal').style.display = 'block';
+    }
+
+    function closeShop() {
+      document.getElementById('shop-modal').style.display = 'none';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clicker Game with Shop</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #game-container {
+            text-align: center;
+        }
+
+        #ball {
+            width: 100px;
+            height: 100px;
+            background-color: #e74c3c; /* Red color */
+            border-radius: 50%;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        #money-display {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        #shop-button {
+            padding: 10px;
+            background-color: #2ecc71;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        #shop-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border: 2px solid #3498db;
+            z-index: 1;
+        }
+
+        .upgrade-button {
+            margin: 10px;
+            padding: 8px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div id="game-container">
+    <div id="ball"></div>
+    <div id="money-display">Money: $0</div>
+    <button id="shop-button">Open Shop</button>
+</div>
+
+<div id="shop-modal">
+    <h2>Shop</h2>
+    <button class="upgrade-button" onclick="buyUpgrade(2, 50)">Multiplier x2 - $50</button>
+    <button class="upgrade-button" onclick="buyUpgrade(3, 100)">Multiplier x3 - $100</button>
+    <button class="upgrade-button" onclick="buyUpgrade(4, 150)">Multiplier x4 - $150</button>
+    <button class="upgrade-button" onclick="buyUpgrade(5, 200)">Multiplier x5 - $200</button>
+    <button class="upgrade-button" onclick="buyUpgrade(6, 250)">Multiplier x6 - $250</button>
+    <button class="upgrade-button" onclick="buyUpgrade(7, 300)">Multiplier x7 - $300</button>
+    <button onclick="closeShop()">Close Shop</button>
+</div>
+
+<script>
+    let money = 0;
+    let clickMultiplier = 1;
+
+    function onBallClick() {
+        money += 1 * clickMultiplier;
+        updateMoneyDisplay();
+    }
+
+    function updateMoneyDisplay() {
+        const moneyDisplay = document.getElementById('money-display');
+        moneyDisplay.textContent = `Money: $${money}`;
+    }
+
+    const ball = document.getElementById('ball');
+    ball.addEventListener('click', onBallClick);
+
+    const shopButton = document.getElementById('shop-button');
+    const shopModal = document.getElementById('shop-modal');
+
+    shopButton.addEventListener('click', openShop);
+
+    function openShop() {
+        shopModal.style.display = 'block';
+    }
+
+    function closeShop() {
+        shopModal.style.display = 'none';
+    }
+
+    function buyUpgrade(multiplier, cost) {
+        if (money >= cost) {
+            money -= cost;
+            clickMultiplier *= multiplier;
+            updateMoneyDisplay();
+            alert(`Multiplier x${multiplier} purchased for $${cost}!`);
+        } else {
+            alert("Not enough money!");
+        }
+    }
+</script>
+
+</body>
+</html>
