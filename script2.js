@@ -62,6 +62,8 @@ function updateSignInStatus() {
                 signInButton.style.display = "block";
             }
         }
+    } else {
+        console.error("profileButton or signInButton is null. Check your HTML structure.");
     }
 }
 
