@@ -37,23 +37,21 @@ function isSignedIn() {
 
 // Function to update the visibility of sign-in and profile buttons
 function updateSignInStatus() {
-    const signInButton = document.getElementById("signInButton");
-    const profileButton = document.getElementById("profileButton");
+    var profileButton = document.getElementById("profileButton");
+    var signInButton = document.getElementById("signInButton");
 
-    if (isSignedIn()) {
-        signInButton.style.display = "none";
-        profileButton.style.display = "inline-block";
-
-        // Display the current account info
-        const signedInUser = localStorage.getItem("signedInUser");
-        const accountInfo = getAccountInfo(signedInUser);
-        updateProfileText(accountInfo);
-    } else {
-        signInButton.style.display = "inline-block";
-        profileButton.style.display = "none";
-
-        // Clear the current account info when signing out
-        updateProfileText(null);
+    if (profileButton && signInButton) {
+        if (userIsSignedIn()) {
+            // User is signed in
+            var username = getSignedInUsername();
+            profileButton.style.display = "block";
+            profileButton.innerHTML = "Welcome, " + username + "!";
+            signInButton.style.display = "none";
+        } else {
+            // User is not signed in
+            profileButton.style.display = "none";
+            signInButton.style.display = "block";
+        }
     }
 }
 
