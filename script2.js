@@ -44,13 +44,23 @@ function updateSignInStatus() {
         if (userIsSignedIn()) {
             // User is signed in
             var username = getSignedInUsername();
-            profileButton.style.display = "block";
-            profileButton.innerHTML = "Welcome, " + username + "!";
-            signInButton.style.display = "none";
+            if (profileButton.style) {
+                profileButton.style.display = "block";
+            }
+            if (profileButton.innerHTML) {
+                profileButton.innerHTML = "Welcome, " + username + "!";
+            }
+            if (signInButton.style) {
+                signInButton.style.display = "none";
+            }
         } else {
             // User is not signed in
-            profileButton.style.display = "none";
-            signInButton.style.display = "block";
+            if (profileButton.style) {
+                profileButton.style.display = "none";
+            }
+            if (signInButton.style) {
+                signInButton.style.display = "block";
+            }
         }
     }
 }
