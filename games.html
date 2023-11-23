@@ -4,44 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Development</title>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            padding: 10px;
-            background-color: #333;
-            color: white;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-
-        div {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        button {
-            margin: 10px;
-            padding: 10px;
-            font-size: 16px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <nav>
@@ -53,12 +16,14 @@
         <img src="https://cdn.discordapp.com/attachments/1061160749524860949/1176278993683619990/ei_1700517095364-removebg-preview.png?ex=656e4a2e&is=655bd52e&hm=91dfd7c21d00cb1e75004c8c83b00496209f3f277b0d017eeacf5b05659913a1&" alt="Logo">
     </nav>
 
-    <!-- Easily Copy and Pasteable Buttons -->
-    <div>
-        <button onclick="redirectTo('https://example.com')">Visit Example.com</button>
-        <button onclick="redirectTo('https://another-site.com')">Visit Another Site</button>
-        <button onclick="redirectTo('https://third-site.com')">Visit Third Site</button>
-    </div>
+    <!-- Centered Buttons -->
+    <center>
+        <div>
+            <button onclick="redirectTo('https://example.com')">Visit Example.com</button>
+            <button onclick="redirectTo('https://another-site.com')">Visit Another Site</button>
+            <button onclick="redirectTo('https://third-site.com')">Visit Third Site</button>
+        </div>
+    </center>
 
     <script src="script.js"></script>
 
