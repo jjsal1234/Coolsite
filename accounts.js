@@ -2,7 +2,7 @@
 
 // Sample accounts data with the "Locked" attribute
 const accounts = [
-    { username: "Tester", verified: true, banned: false, locked: true },
+    { username: "[Deleted]", verified: true, banned: false, locked: true },
     { username: "jjsal1234", password: "jacobsux1omg", verified: true, banned: false, locked: false },
     { username: "Skeleton", password: "DfcKyt", verified: true, banned: false, locked: false },
     { username: "Cow", password: "HsdjaHjdJ", verified: false, banned: false, locked: false },
