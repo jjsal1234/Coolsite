@@ -8,25 +8,31 @@ function closeSignInPopup() {
     document.getElementById("signInPopup").style.display = "none";
 }
 
-// Function to sign in
+var currentUser = null;
+
 function signIn() {
-    const username = document.getElementById("username").value;
-    const password = prompt("Please enter your password"); // Simple password prompt (replace with a more secure method)
+    var username = document.getElementById('username').value;
+    // Perform authentication logic, set currentUser if authentication is successful
 
-    const accountInfo = getAccountInfo(username);
-
-    if (accountInfo && !accountInfo.banned && checkCredentials(username, password)) {
-        alert("Sign-in successful!");
-        closeSignInPopup();
-        openProfilePopup(username, accountInfo.verified);
-        // Set a cookie or use localStorage to persist the sign-in state
-        localStorage.setItem("signedInUser", username);
-        updateSignInStatus();
-        updateLeaderboard();
-    } else if (accountInfo && accountInfo.banned) {
-        window.location.href = "https://jjsal1234.github.io/Coolsite/banned";
+    // For example:
+    if (authenticationSuccessful(username)) {
+        currentUser = username;
+        document.getElementById('signInPopup').style.display = 'none';
+        updateProfileButton();
     } else {
-        alert("Incorrect username or password. Please try again.");
+        alert('Authentication failed. Please try again.');
+    }
+}
+
+function updateProfileButton() {
+    var profileButton = document.getElementById('profileButton');
+    if (currentUser) {
+        // If a user is signed in, display the profile button
+        profileButton.style.display = 'block';
+        document.getElementById('profileText').innerText = currentUser;
+    } else {
+        // If no user is signed in, hide the profile button
+        profileButton.style.display = 'none';
     }
 }
 
