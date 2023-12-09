@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Game Dev Site</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url('https://cdn.discordapp.com/attachments/1061160749524860949/1176592941356154993/bg2.jpg?ex=656f6e91&is=655cf991&hm=3ea7ef1e3669f108dae941c95fe5ca52d942b714a8ffdfc9f13ef5a4e3b407ec') center/cover;
+            font-family: Arial, sans-serif;
+            color: white; /* Text color for the body */
+            position: relative; /* Make the body a positioning context for absolute positioning */
+        }
+
+        nav {
+            background-color: #333; /* Dark background color for the navigation bar */
+            text-align: center;
+            padding: 15px;
+            z-index: 1; /* Ensure the nav bar stays above other elements */
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            margin: 0 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            background-color: #555; /* Darker background color on hover */
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            margin-top: 150px;
+        }
+
+        /* Popup styles */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #222; /* Dark background color for the popup */
+            padding: 40px; /* Increased padding for a larger size */
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1); /* Lighter shadow for contrast */
+            width: 80%; /* Adjust the width as needed */
+            height: 80%; /* Adjust the height as needed */
+            z-index: 2; /* Ensure the popup is above other elements */
+        }
+
+        /* Overlay styles */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1; /* Ensure the overlay is above other elements */
+        }
+
+        /* Project button styles */
+        .project-button {
+            display: block;
+            width: 100%;
+            padding: 15px; 
+            margin: 15px 0;
+            background-color: #444;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-button:hover {
+            background-color: #666;
+        }
+
+        /* Logo styles */
+        .logo {
+            position: absolute;
+            top: 8px; /* Adjust the top position as needed */
+            left: 10px; /* Adjust the left position as needed */
+            width: 50px; /* Adjust the width as needed */
+            height: auto;
+            z-index: 3; /* Ensure the logo is above other elements */
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo -->
+    <img class="logo" src="https://cdn.discordapp.com/attachments/1061160749524860949/1176278993683619990/ei_1700517095364-removebg-preview.png?ex=656e4a2e&is=655bd52e&hm=91dfd7c21d00cb1e75004c8c83b00496209f3f277b0d017eeacf5b05659913a1" alt="Logo">
+
+    <nav>
+        <a onclick="openWebsite('https://jjsal1234.github.io/Coolsite/')">Home</a>
+        <a onclick="openProjectsPopup()">Projects</a>
+        <a onclick="openWebsite('https://jjsal1234.github.io/Coolsite/about%20us')">About</a>
+        <!-- Additional links -->
+        <a onclick="openWebsite('https://jjsal1234.github.io/Coolsite/Other')">Other Sites</a>
+    </nav>
+
+    <!-- Popup Content for Projects -->
+    <div class="overlay" id="projectsOverlay"></div>
+    <div class="popup" id="projectsPopup">
+        <!-- Project Buttons -->
+        <a class="project-button" onclick="openWebsite('https://project1-website.com')">Project 1</a>
+        <a class="project-button" onclick="openWebsite('https://project2-website.com')">Project 2</a>
+        <!-- Add more project buttons as needed -->
+        <button onclick="closeProjectsPopup()">Close</button>
+    </div>
+
+    <script>
+        function openProjectsPopup() {
+            document.getElementById('projectsOverlay').style.display = 'block';
+            document.getElementById('projectsPopup').style.display = 'block';
+        }
+
+        function closeProjectsPopup() {
+            document.getElementById('projectsOverlay').style.display = 'none';
+            document.getElementById('projectsPopup').style.display = 'none';
+        }
+
+        function openWebsite(url) {
+            window.location.href = url;
+        }
+    </script>
+</body>
+</html>
