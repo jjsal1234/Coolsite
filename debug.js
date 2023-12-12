@@ -3,16 +3,24 @@
 // Create a simulated admin panel
 var adminPanel = document.createElement('div');
 adminPanel.style.position = 'fixed';
-adminPanel.style.top = '0';
-adminPanel.style.left = '0';
+adminPanel.style.top = '50%';
+adminPanel.style.left = '50%';
+adminPanel.style.transform = 'translate(-50%, -50%)';
 adminPanel.style.background = 'rgba(0, 0, 0, 0.8)';
 adminPanel.style.color = 'white';
-adminPanel.style.padding = '10px';
+adminPanel.style.padding = '20px';
 adminPanel.style.zIndex = '9999';
+adminPanel.style.display = 'none'; // Initially hidden
+
+// Password for the admin panel
+var adminPassword = 'password123';
 
 // Add some content to the admin panel
 adminPanel.innerHTML = `
     <h2>Admin Panel</h2>
+    <label for="password">Password:</label>
+    <input type="password" id="password">
+    <button onclick="openPanel()">Open Panel</button>
     <button onclick="simulateCriticalError()">Simulate Critical Error</button>
     <button onclick="simulateWarning()">Simulate Warning</button>
     <button onclick="simulateInformation()">Simulate Information</button>
@@ -26,6 +34,17 @@ function displayDebugMessage(message) {
     var debugMessage = document.getElementById('debugMessage');
     if (debugMessage) {
         debugMessage.innerText = message;
+    }
+}
+
+// Function to open the admin panel
+function openPanel() {
+    var passwordInput = document.getElementById('password');
+    if (passwordInput.value === adminPassword) {
+        adminPanel.style.display = 'block';
+        passwordInput.value = ''; // Clear the password field
+    } else {
+        alert('Incorrect password!');
     }
 }
 
