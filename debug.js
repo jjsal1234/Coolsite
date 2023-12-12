@@ -60,24 +60,37 @@ document.addEventListener("DOMContentLoaded", function () {
             <button onclick="simulateCriticalError()">Simulate Critical Error</button>
             <button onclick="simulateWarning()">Simulate Warning</button>
             <button onclick="simulateInformation()">Simulate Information</button>
+            <br><br>
+            <button onclick="openWebsite('https://example.com')">Visit Example.com</button>
+            <button onclick="showDebugInfo()">Show Debug Info</button>
         `;
 
         // Append the admin panel to the body
         document.body.appendChild(adminPanel);
-    }
 
-    // Simulate critical error
-    function simulateCriticalError() {
-        alert("Debug Mode: Critical Error!");
-    }
+        // Function to open a website
+        window.openWebsite = function (url) {
+            window.open(url, '_blank');
+        };
 
-    // Simulate warning
-    function simulateWarning() {
-        alert("Debug Mode: Warning - This is just a simulation.");
-    }
+        // Function to show debug information
+        window.showDebugInfo = function () {
+            alert("Debug Info:\nThis is a simulated debug message.");
+        }
 
-    // Simulate information
-    function simulateInformation() {
-        alert("Debug Mode: Information - This is for testing purposes only.");
+        // Simulate critical error
+        window.simulateCriticalError = function () {
+            alert("Debug Mode: Critical Error!");
+        }
+
+        // Simulate warning
+        window.simulateWarning = function () {
+            alert("Debug Mode: Warning - This is just a simulation.");
+        }
+
+        // Simulate information
+        window.simulateInformation = function () {
+            alert("Debug Mode: Information - This is for testing purposes only.");
+        }
     }
 });
