@@ -97,18 +97,34 @@
             height: auto;
             z-index: 3; /* Ensure the logo is above other elements */
         }
+
+        /* YouTube button styles */
+        .youtube-button {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            background-color: red;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 3; /* Ensure the YouTube button is above other elements */
+        }
     </style>
 </head>
 <body>
     <!-- Logo -->
     <img class="logo" src="https://cdn.discordapp.com/attachments/1061160749524860949/1176278993683619990/ei_1700517095364-removebg-preview.png?ex=656e4a2e&is=655bd52e&hm=91dfd7c21d00cb1e75004c8c83b00496209f3f277b0d017eeacf5b05659913a1" alt="Logo">
 
+    <!-- YouTube button -->
+    <div class="youtube-button" onclick="openWebsite('https://jjsal1234.github.io/jjsal1234-yt/')">YouTube</div>
+
     <nav>
-        <a onclick="openWebsite('https://jjsal1234.github.io/Coolsite/')">Home</a>
+        <a onclick="openWebsite('https://your-home-website.com')">Home</a>
         <a onclick="openProjectsPopup()">Projects</a>
-        <a onclick="openWebsite('https://jjsal1234.github.io/Coolsite/about%20us')">About</a>
+        <a onclick="openWebsite('https://your-about-website.com')">About</a>
         <!-- Additional links -->
-        <a onclick="openWebsite('https://jjsal1234.github.io/Coolsite/Other')">Other Sites</a>
+        <a onclick="openWebsite('https://example1.com')">Other Sites</a>
     </nav>
 
     <!-- Popup Content for Projects -->
