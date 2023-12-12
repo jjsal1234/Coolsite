@@ -18,8 +18,8 @@ var adminPassword = 'password123';
 // Add some content to the admin panel
 adminPanel.innerHTML = `
     <h2>Admin Panel</h2>
-    <label for="password">Password:</label>
-    <input type="password" id="password">
+    <label for="panelPassword">Password:</label>
+    <input type="password" id="panelPassword">
     <button onclick="openPanel()">Open Panel</button>
     <button onclick="simulateCriticalError()">Simulate Critical Error</button>
     <button onclick="simulateWarning()">Simulate Warning</button>
@@ -39,7 +39,7 @@ function displayDebugMessage(message) {
 
 // Function to open the admin panel
 function openPanel() {
-    var passwordInput = document.getElementById('password');
+    var passwordInput = document.getElementById('panelPassword');
     if (passwordInput.value === adminPassword) {
         adminPanel.style.display = 'block';
         passwordInput.value = ''; // Clear the password field
