@@ -22,8 +22,10 @@ document.addEventListener("DOMContentLoaded", function () {
         <h2>Admin Panel</h2>
         <label for="panelPassword">Password:</label>
         <input type="password" id="panelPassword">
+        <br><br>
         <button onclick="openPanel()">Open Panel</button>
         <button onclick="showPanel()">Show Panel</button>
+        <br><br>
         <button onclick="simulateCriticalError()">Simulate Critical Error</button>
         <button onclick="simulateWarning()">Simulate Warning</button>
         <button onclick="simulateInformation()">Simulate Information</button>
