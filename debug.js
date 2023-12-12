@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <label for="panelPassword">Password:</label>
         <input type="password" id="panelPassword">
         <button onclick="openPanel()">Open Panel</button>
+        <button onclick="showPanel()">Show Panel</button>
         <button onclick="simulateCriticalError()">Simulate Critical Error</button>
         <button onclick="simulateWarning()">Simulate Warning</button>
         <button onclick="simulateInformation()">Simulate Information</button>
@@ -48,6 +49,11 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             alert('Incorrect password!');
         }
+    };
+
+    // Function to show the admin panel without a password
+    window.showPanel = function () {
+        adminPanel.style.display = 'block';
     };
 
     // Simulate critical error
