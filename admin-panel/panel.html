@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script>
+        // Check if the user has entered the correct password
+        var enteredPassword = prompt("Enter the password:");
+        
+        // Replace "your-password" with the actual password
+        if (enteredPassword !== "your-password") {
+            alert("Incorrect password. Access denied.");
+            window.location.href = "index.html";
+        }
+    </script>
 </head>
 <body>
     <h1>Admin Panel</h1>
