@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script>
+        function checkPassword() {
+            var password = prompt("Enter the password:");
+            
+            // Replace "your-password" with the actual password
+            if (password === "your-password") {
+                window.location.href = "panel.html";
+            } else {
+                alert("Incorrect password. Access denied.");
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Welcome to the Main Page</h1>
+    <button onclick="checkPassword()">Go to Admin Panel</button>
+</body>
+</html>
