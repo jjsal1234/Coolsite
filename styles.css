@@ -26,6 +26,15 @@ nav img {
     height: auto;
 }
 
+nav button {
+    background-color: #444;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
 .container {
     text-align: center;
     padding: 50px;
@@ -84,4 +93,19 @@ nav img {
     padding: 10px;
     cursor: pointer;
     font-size: 16px;
+}
+
+#leaderboardList {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+#leaderboardList li {
+    margin-bottom: 10px;
+}
+
+#profileText {
+    color: white;
+    margin-right: 10px;
 }
