@@ -1,80 +1,51 @@
-local player = game.Players.LocalPlayer
-local screenGui = Instance.new("ScreenGui")
-local guiFrame = Instance.new("Frame")
-local flyButton = Instance.new("TextButton")
-local noclipButton = Instance.new("TextButton")
-local speedSlider = Instance.new("TextButton")
-local jumpSlider = Instance.new("TextButton")
-local speedValue = Instance.new("TextLabel")
-local jumpValue = Instance.new("TextLabel")
-local notificationFrame = Instance.new("Frame") -- Changed to Frame for better control
-local notificationText = Instance.new("TextLabel")
+-- Load the Orion library
+local boot, local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
--- Set properties for GUI elements
-screenGui.Name = "AdminPanel"
-screenGui.Parent = player.PlayerGui
+-- Create a window
+local Window = OrionLib:MakeWindow({
+    Name = "Admin Panel",
+    HidePremium = false,
+    SaveConfig = true,
+    ConfigFolder = "AdminPanelConfig"
+})
 
-guiFrame.Name = "AdminPanelFrame"
-guiFrame.Size = UDim2.new(0, 200, 0, 300)
-guiFrame.Position = UDim2.new(0, 10, 0, 10)
-guiFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-guiFrame.BackgroundTransparency = 0.5
-guiFrame.BorderSizePixel = 0
-guiFrame.Parent = screenGui
+-- Create a tab
+local Tab1 = Window:MakeTab({
+    Name = "Tab 1",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
 
-flyButton.Name = "FlyButton"
--- Other button setups...
+-- Add a section to the tab
+local Section1 = Tab1:AddSection({
+    Name = "Section 1"
+})
 
--- SpeedValue and JumpValue setups...
+-- Add a button to the section
+Section1:AddButton({
+    Name = "Button 1",
+    Callback = function()
+        print("Button 1 pressed")
+    end
+})
 
--- Setup for notification frame and text
-notificationFrame.Name = "NotificationFrame"
-notificationFrame.Size = UDim2.new(0, 200, 0, 30)
-notificationFrame.Position = UDim2.new(0, 0, 1, -30)
-notificationFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-notificationFrame.BackgroundTransparency = 0.5
-notificationFrame.Visible = false -- Initially not visible
-notificationFrame.Parent = guiFrame
+-- Create another tab
+local Tab2 = Window:MakeTab({
+    Name = "Tab 2",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
 
-notificationText.Name = "NotificationText"
-notificationText.Size = UDim2.new(1, 0, 1, 0)
-notificationText.Position = UDim2.new(0, 0, 0, 0)
-notificationText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-notificationText.Text = ""
-notificationText.TextColor3 = Color3.fromRGB(0, 0, 0)
-notificationText.TextSize = 20
-notificationText.Parent = notificationFrame
+-- Add a section to the second tab
+local Section2 = Tab2:AddSection({
+    Name = "Section 2"
+})
 
--- Function to animate the notification
-local function animateNotification(text)
-    notificationText.Text = text
-    notificationFrame.Visible = true
-
-    -- Tween the notification
-    notificationFrame:TweenSize(UDim2.new(0, 200, 0, 30), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, 0.5, true)
-    wait(2.5)
-    notificationFrame:TweenSize(UDim2.new(0, 0, 0, 30), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, 0.5, true)
-    wait(0.5)
-    notificationFrame.Visible = false
-end
-
--- Functions to handle button clicks and slider changes
-flyButton.MouseButton1Click:Connect(function()
-    -- Code to toggle flying
-    animateNotification("Toggled flying")
-end)
-
-noclipButton.MouseButton1Click:Connect(function()
-    -- Code to toggle noclip
-    animateNotification("Toggled noclip")
-end)
-
-speedSlider.MouseButton1Click:Connect(function()
-    -- Code to adjust speed
-    animateNotification("Adjusted speed")
-end)
-
-jumpSlider.MouseButton1Click:Connect(function()
-    -- Code to adjust jump power
-    animateNotification("Adjusted jump power")
-end)
+-- Add a toggle to the second section
+local Toggle1 = Section2:AddToggle({
+    Name = "Toggle 1",
+    Default = false,
+    Callback = function(Value)
+        print("Toggle 1 value:", Value)
+    end
+})
