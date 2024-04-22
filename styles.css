@@ -38,7 +38,7 @@ nav ul li a {
 
 /* Welcome Section Styles */
 .welcome-section {
-    background-image: url('path/to/custom-background.jpg');
+    background-image: url('https://jjsal1234.github.io/Coolsite/bg.png');
     background-size: cover;
     color: #fff; /* Text color */
     text-align: center;
