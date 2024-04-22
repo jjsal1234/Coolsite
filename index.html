@@ -56,12 +56,24 @@
 
         /* Advertisement Styles */
         .advertisement {
-            position: fixed;
-            bottom: 20px; /* Adjust this value as needed */
-            left: 20px; /* Adjust this value as needed */
-            z-index: 999; /* Ensure it's on top of other content */
+            position: relative;
+            margin-bottom: 50px; /* Adjust this value to add space below the ad */
+            padding-left: 20px; /* Adjust this value to move the ad to the right */
         }
 
+        .advertisement img {
+            width: 470px;
+            height: 238px;
+            border-radius: 10px; /* Add border-radius for a UI effect */
+            cursor: pointer; /* Change cursor to pointer on hover */
+            transition: transform 0.3s ease; /* Add smooth transition */
+        }
+
+        .advertisement img:hover {
+            transform: scale(1.05); /* Add slight zoom effect on hover */
+        }
+
+        /* Add some padding to allow scrolling */
         .padding-bottom {
             height: 300px; /* Adjust this value to add padding for scrolling */
         }
@@ -86,11 +98,9 @@
 
     <!-- Advertisement Section -->
     <section class="advertisement">
-        <div class="container">
-            <a href="https://your-game-link.com" target="_blank">
-                <img src="red-square-ad.png" alt="Red Square Ad" width="470" height="238">
-            </a>
-        </div>
+        <a href="https://your-game-link.com" target="_blank">
+            <img src="red-square-ad.png" alt="Red Square Ad">
+        </a>
     </section>
 
     <!-- Add some padding to allow scrolling -->
