@@ -16,7 +16,7 @@
   {
     "name": "Red Square Mages",
     "package": "com.logicrune.mages",
-    "icon": "assets/mage.webp",
+    "icon": "assets/mages.webp",
     "download": "not-complete",
     "version": "1.0"
   },
@@ -36,7 +36,7 @@
   },
   {
     "name": "Red Square Rampage",
-    "package": "com.logicrune.rs2",
+    "package": "com.logicrune.rsp",
     "icon": "assets/rampage.webp",
     "download": "not-complete",
     "version": "1.0"
