@@ -1,23 +1,23 @@
 [
-    {
-        "name": "AB Island HD",
-        "icon": "https://via.placeholder.com/50",
-        "package": "com.rovio.angrybirdsislandhd",
-        "version": "1.7.0",
-        "download": "https://example.com/download/abislandhd"
-    },
-    {
-        "name": "Amazing Alex",
-        "icon": "https://via.placeholder.com/50",
-        "package": "com.rovio.amazingalexHD",
-        "version": "0.4.0",
-        "download": "https://example.com/download/amazingalex"
-    },
-    {
-        "name": "Angry Birds",
-        "icon": "https://via.placeholder.com/50",
-        "package": "com.rovio.angrybirds",
-        "version": "2.1.0",
-        "download": "https://example.com/download/angrybirds"
-    }
+  {
+    "name": "App Name 1",
+    "package": "com.example.app1",
+    "icon": "path/to/app1-icon.png",
+    "download": "path/to/app1-download-url",
+    "version": "1.0"
+  },
+  {
+    "name": "App Name 2",
+    "package": "com.example.app2",
+    "icon": "path/to/app2-icon.png",
+    "download": "path/to/app2-download-url",
+    "version": "2.1"
+  },
+  {
+    "name": "App Name 3",
+    "package": "com.example.app3",
+    "icon": "path/to/app3-icon.png",
+    "download": "path/to/app3-download-url",
+    "version": "3.5"
+  }
 ]
