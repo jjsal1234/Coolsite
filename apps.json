@@ -1,0 +1,20 @@
+[
+    {
+        "name": "AB Island HD",
+        "icon": "https://media.discordapp.net/attachments/1086613124045619202/1259571638538735638/Untitled97_20230625201638.png?ex=668e2540&is=668cd3c0&hm=2f9e42c01f60bb22806103e482be8c1f66e486b2c0577e39bfcdf09b6f25d423&=&format=webp&quality=lossless&width=495&height=278",
+        "package": "com.rovio.angrybirdsislandhd",
+        "version": "1.7.0"
+    },
+    {
+        "name": "Amazing Alex",
+        "icon": "https://via.placeholder.com/50",
+        "package": "com.rovio.amazingalexHD",
+        "version": "0.4.0"
+    },
+    {
+        "name": "Angry Birds",
+        "icon": "https://via.placeholder.com/50",
+        "package": "com.rovio.angrybirds",
+        "version": "2.1.0"
+    }
+]
