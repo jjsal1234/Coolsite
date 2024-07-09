@@ -86,32 +86,37 @@
         <div class="search-bar">
             <input type="text" placeholder="Search for an app...">
         </div>
-        <ul class="app-list">
-            <li class="app-item">
-                <img src="https://via.placeholder.com/50" alt="App Icon">
-                <div class="app-details">
-                    <h2>AB Island HD</h2>
-                    <p>com.rovio.angrybirdsislandhd</p>
-                </div>
-                <a href="#" class="download-button">Download: 1.7.0</a>
-            </li>
-            <li class="app-item">
-                <img src="https://via.placeholder.com/50" alt="App Icon">
-                <div class="app-details">
-                    <h2>Amazing Alex</h2>
-                    <p>com.rovio.amazingalexHD</p>
-                </div>
-                <a href="#" class="download-button">Download: 0.4.0</a>
-            </li>
-            <li class="app-item">
-                <img src="https://via.placeholder.com/50" alt="App Icon">
-                <div class="app-details">
-                    <h2>Angry Birds</h2>
-                    <p>com.rovio.angrybirds</p>
-                </div>
-                <a href="#" class="download-button">Download: 2.1.0</a>
-            </li>
+        <ul class="app-list" id="app-list">
+            <!-- Apps will be loaded here by JavaScript -->
         </ul>
     </div>
+    <script>
+        // Function to load app data from JSON file
+        function loadApps() {
+            fetch('apps.json')
+                .then(response => response.json())
+                .then(data => {
+                    const appList = document.getElementById('app-list');
+                    appList.innerHTML = '';
+                    data.forEach(app => {
+                        const appItem = document.createElement('li');
+                        appItem.className = 'app-item';
+                        appItem.innerHTML = `
+                            <img src="${app.icon}" alt="App Icon">
+                            <div class="app-details">
+                                <h2>${app.name}</h2>
+                                <p>${app.package}</p>
+                            </div>
+                            <a href="#" class="download-button">Download: ${app.version}</a>
+                        `;
+                        appList.appendChild(appItem);
+                    });
+                })
+                .catch(error => console.error('Error loading app data:', error));
+        }
+
+        // Load apps when the page loads
+        window.onload = loadApps;
+    </script>
 </body>
 </html>
