@@ -3,7 +3,7 @@
     "name": "Red Square",
     "package": "com.rs1.redsquare",
     "icon": "path/to/app1-icon.png",
-    "download": "path/to/app1-download-url",
+    "download": "red-square",
     "version": "1.0"
   },
   {
