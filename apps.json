@@ -7,10 +7,10 @@
     "version": "1.0"
   },
   {
-    "name": "App Name 2",
-    "package": "com.example.app2",
+    "name": "Red Square Pirates",
+    "package": "com.logicrune.pirates",
     "icon": "path/to/app2-icon.png",
-    "download": "path/to/app2-download-url",
+    "download": "https://logicrune.itch.io/rs2-pirates",
     "version": "2.1"
   },
   {
