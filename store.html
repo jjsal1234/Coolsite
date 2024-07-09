@@ -84,35 +84,53 @@
             <p>All links are down for the time being. If anyone has a backup with all the IPA URLs and icons, please let me know.</p>
         </div>
         <div class="search-bar">
-            <input type="text" placeholder="Search for an app...">
+            <input type="text" id="search-input" placeholder="Search for an app..." onkeyup="filterApps()">
         </div>
         <ul class="app-list" id="app-list">
             <!-- Apps will be loaded here by JavaScript -->
         </ul>
     </div>
     <script>
+        let apps = [];
+
         // Function to load app data from JSON file
         function loadApps() {
             fetch('apps.json')
                 .then(response => response.json())
                 .then(data => {
-                    const appList = document.getElementById('app-list');
-                    appList.innerHTML = '';
-                    data.forEach(app => {
-                        const appItem = document.createElement('li');
-                        appItem.className = 'app-item';
-                        appItem.innerHTML = `
-                            <img src="${app.icon}" alt="App Icon">
-                            <div class="app-details">
-                                <h2>${app.name}</h2>
-                                <p>${app.package}</p>
-                            </div>
-                            <a href="#" class="download-button">Download: ${app.version}</a>
-                        `;
-                        appList.appendChild(appItem);
-                    });
+                    apps = data;
+                    displayApps(apps);
                 })
                 .catch(error => console.error('Error loading app data:', error));
+        }
+
+        // Function to display apps
+        function displayApps(appsToDisplay) {
+            const appList = document.getElementById('app-list');
+            appList.innerHTML = '';
+            appsToDisplay.forEach(app => {
+                const appItem = document.createElement('li');
+                appItem.className = 'app-item';
+                appItem.innerHTML = `
+                    <img src="${app.icon}" alt="App Icon">
+                    <div class="app-details">
+                        <h2>${app.name}</h2>
+                        <p>${app.package}</p>
+                    </div>
+                    <a href="${app.download}" class="download-button">Download: ${app.version}</a>
+                `;
+                appList.appendChild(appItem);
+            });
+        }
+
+        // Function to filter apps based on search input
+        function filterApps() {
+            const searchInput = document.getElementById('search-input').value.toLowerCase();
+            const filteredApps = apps.filter(app => 
+                app.name.toLowerCase().includes(searchInput) ||
+                app.package.toLowerCase().includes(searchInput)
+            );
+            displayApps(filteredApps);
         }
 
         // Load apps when the page loads
