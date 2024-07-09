@@ -40,5 +40,12 @@
     "icon": "assets/rampage.webp",
     "download": "not-complete",
     "version": "1.0"
+  },
+  {
+    "name": "klungle run",
+    "package": "com.logicrune.klunglerun",
+    "icon": "assets/klungle.webp",
+    "download": "https://logicrune.itch.io/klungle-run",
+    "version": "1.1"
   }
 ]
