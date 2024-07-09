@@ -2,7 +2,7 @@
   {
     "name": "Red Square",
     "package": "com.rs1.redsquare",
-    "icon": "path/to/app1-icon.png",
+    "icon": "assets/red.webp",
     "download": "Red-Square",
     "version": "1.0"
   },
@@ -11,13 +11,34 @@
     "package": "com.logicrune.pirates",
     "icon": "assets/pirates.webp",
     "download": "https://logicrune.itch.io/rs2-pirates",
-    "version": "2.1"
+    "version": "1.1"
   },
   {
-    "name": "App Name 3",
-    "package": "com.example.app3",
-    "icon": "path/to/app3-icon.png",
-    "download": "path/to/app3-download-url",
-    "version": "3.5"
+    "name": "Red Square Mages",
+    "package": "com.logicrune.mages",
+    "icon": "assets/mage.webp",
+    "download": "not-complete",
+    "version": "1.0"
+  },
+  {
+    "name": "Red Square 2",
+    "package": "com.logicrune.rs2",
+    "icon": "assets/rs2.webp",
+    "download": "https://jjsal1234.github.io/red-square",
+    "version": "1.4.1"
+  },
+  {
+    "name": "Killswitch",
+    "package": "com.logicrune.killswitch",
+    "icon": "assets/killswitch.webp",
+    "download": "not-complete",
+    "version": "1.0"
+  },
+  {
+    "name": "Red Square Rampage",
+    "package": "com.logicrune.rs2",
+    "icon": "assets/rampage.webp",
+    "download": "not-complete",
+    "version": "1.0"
   }
 ]
