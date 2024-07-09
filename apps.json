@@ -9,7 +9,7 @@
   {
     "name": "Red Square Pirates",
     "package": "com.logicrune.pirates",
-    "icon": "path/to/app2-icon.png",
+    "icon": "assets/pirates.webp",
     "download": "https://logicrune.itch.io/rs2-pirates",
     "version": "2.1"
   },
