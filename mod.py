@@ -133,7 +133,7 @@ def main_menu():
     money, xp = load_data()
 
     # Get current version
-    current_version = "1.4.1 (Modded)"  
+    current_version = "1.4.1"  
 
     # Check for updates
     update_info = check_for_updates(current_version)
@@ -212,7 +212,7 @@ def main_menu():
         screen.blit(level_text, (screen_width - 150, 40))
 
         # Display version number in the bottom left corner
-        version_text = version_font.render("V1.4.1", True, BLACK)
+        version_text = version_font.render("V1.4.1 (Modded)", True, BLACK)
         screen.blit(version_text, (10, screen_height - 30))
 
         # Display money
