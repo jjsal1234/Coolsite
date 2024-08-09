@@ -47,5 +47,12 @@
     "icon": "assets/klungle.webp",
     "download": "https://logicrune.itch.io/klungle-run",
     "version": "1.1"
+  },
+  {
+    "name": "Red Square Towers",
+    "package": "com.logicrune.rst",
+    "icon": "assets/towers.webp",
+    "download": "https://logicrune.itch.io/klungle-run",
+    "version": "1.0"
   }
 ]
