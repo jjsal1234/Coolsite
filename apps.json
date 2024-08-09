@@ -75,5 +75,19 @@
     "icon": "assets/hd.webp",
     "download": "https://drive.google.com/file/d/1-1UT2RCJgECTR18WmtMKV3qUR6NXQmRy/view",
     "version": "1.4.1"
+  },
+  {
+    "name": "Earth Survival",
+    "package": "com.logicrune.earth",
+    "icon": "assets/earth.webp",
+    "download": "not-complete",
+    "version": "1.0"
+  },
+  {
+    "name": "Legacy",
+    "package": "com.logicrune.leg",
+    "icon": "assets/legacy.webp",
+    "download": "not-complete",
+    "version": "1.0"
   }
 ]
