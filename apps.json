@@ -54,5 +54,19 @@
     "icon": "assets/towers.webp",
     "download": "not-complete",
     "version": "1.0"
+  },
+  {
+    "name": "Red Square Duality",
+    "package": "com.logicrune.rsd",
+    "icon": "assets/dual.webp",
+    "download": "not-complete",
+    "version": "1.0"
+  },
+  {
+    "name": "Red Square Galactic",
+    "package": "com.logicrune.rsg",
+    "icon": "assets/gala.webp",
+    "download": "not-complete",
+    "version": "1.0"
   }
 ]
