@@ -89,5 +89,12 @@
     "icon": "assets/legacy.webp",
     "download": "not-complete",
     "version": "1.0"
+  },
+  {
+    "name": "Cat Game",
+    "package": "com.logicrune.cat",
+    "icon": "assets/cat.webp",
+    "download": "not-complete",
+    "version": "0.1b"
   }
 ]
