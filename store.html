@@ -94,7 +94,7 @@
 
         // Function to load app data from JSON file
         function loadApps() {
-            fetch('https://www.jjsal1234.elementfx.com/apps.json')
+            fetch('apps.json')
                 .then(response => response.json())
                 .then(data => {
                     apps = data;
