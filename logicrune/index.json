@@ -1,1 +1,16 @@
-
+{
+  "games": [
+    {
+      "name": "Cool Game",
+      "description": "An awesome indie adventure",
+      "icon_url": "https://example.com/icons/coolgame.png",
+      "download_url": "https://example.com/downloads/coolgame.zip"
+    },
+    {
+      "name": "Fun Puzzle",
+      "description": "Solve tricky puzzles!",
+      "icon_url": "https://example.com/icons/funpuzzle.png",
+      "download_url": "https://example.com/downloads/funpuzzle.zip"
+    }
+  ]
+}
